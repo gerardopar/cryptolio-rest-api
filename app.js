@@ -39,7 +39,6 @@ app.use((error, req, res, next) => {
 
 // * server initialized
 mongoose
-    // .connect(`mongodb+srv://root:Kief323812!@cluster0-4ucqx.mongodb.net/cryptolio?retryWrites=true`) // mongoDB instance
     .connect(`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0-4ucqx.mongodb.net/${process.env.MONGO_DEFAULT_DATABASE}`) // mongoDB instance
     .then((result) => {
         app.listen(process.env.PORT || 3000);

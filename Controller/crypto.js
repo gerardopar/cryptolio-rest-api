@@ -12,7 +12,7 @@ exports.getCoinList = (req, res, next) => {
     fetch('https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?limit=5000', {
         headers: {
             method: 'GET',
-            'X-CMC_PRO_API_KEY': 'beaf807f-da5e-427f-897a-c0381a8a1e49'
+            'X-CMC_PRO_API_KEY': process.env.API_SECRET_KEY
         }
     }).then((data) => {
         return data.json(); // returns the first api results
@@ -55,7 +55,7 @@ exports.postCoinSearched = (req, res, next) => {
     fetch(`https://pro-api.coinmarketcap.com/v1/cryptocurrency/info?symbol=${coinSearched}`, {
         headers: {
             method: 'GET',
-            'X-CMC_PRO_API_KEY': 'beaf807f-da5e-427f-897a-c0381a8a1e49'
+            'X-CMC_PRO_API_KEY': process.env.API_SECRET_KEY
         }
     }).then((data) => {
         return data.json(); // returns the first api results
@@ -68,7 +68,7 @@ exports.postCoinSearched = (req, res, next) => {
             fetch(`https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=${coinSearched}`, {
             headers: {
                 method: 'GET',
-                'X-CMC_PRO_API_KEY': 'beaf807f-da5e-427f-897a-c0381a8a1e49'
+                'X-CMC_PRO_API_KEY': process.env.API_SECRET_KEY
             }
             }).then((data) => {
                 return data.json(); // returns the 2nd api results
@@ -102,7 +102,7 @@ exports.getGlobalMarket = (req, res, next) => {
     fetch('https://pro-api.coinmarketcap.com/v1/global-metrics/quotes/latest', {
         headers: {
             method: 'GET',
-            'X-CMC_PRO_API_KEY': 'beaf807f-da5e-427f-897a-c0381a8a1e49'
+            'X-CMC_PRO_API_KEY': process.env.API_SECRET_KEY
         }
     })
     .then((data) => {
@@ -173,7 +173,7 @@ exports.getCoins = (req, res, next) => {
             return currentUser.coins.forEach((coin) => {
                 fetch(`https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=${coin.symbol}`, {
                 headers: {
-                    'X-CMC_PRO_API_KEY': 'beaf807f-da5e-427f-897a-c0381a8a1e49'
+                    'X-CMC_PRO_API_KEY': process.env.API_SECRET_KEY
                 }
                 }).then((data) => {
                     return data.json(); // returns the first api results
